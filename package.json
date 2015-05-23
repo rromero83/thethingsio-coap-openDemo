@@ -1,0 +1,38 @@
+{
+  "name": "thethingsio-coap",
+  "description": "CoAP library for coap.thethings.io endpoint",
+  "version": "0.1.0",
+  "private": false,
+  "author": {
+    "name": "thethingsiO"
+  },
+  "keywords": [
+    "coap",
+    "client",
+    "theThings",
+    "thethings.iO",
+    "internet of things",
+    "IoT"
+  ],
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Martí Zamora Casals",
+      "email": "marti@thethings.io"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theThings/thethingsio-coap-node.git"
+  },
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "coap": "0.8.0"
+  },
+  "readme": "#theThings.IO node CoAP lib\nThis lib allows to connect to the coap.thethings.io endpoint.\n\nPlease visit the [documentation page](https://developers.thethings.io) page at [theThings.IO](https://thethings.io)\n\n\n#Install\n```\nnpm install thethingsio-coap\n```\n\n##Getting started\n\nSign up to [thethings.iO](https://thethings.io) and create a user. Log in and go to the [things manager](https://panel.thethings.io/#/things-manager) and press \"get activation codes\".\n\nYou can put your activation code in a file called config.json with this format:\n\n```js\n\n{\n    \"activationCode\" : \"one of your activation codes\"\n}\n```\n\nIf you already have your thing activated you can just put the thing token\n```js\n\n{\n    \"thingToken\" : \"one of your thing tokens\"\n}\n```\n\nWith this package you can perform 4 types of actions:\n\n  * thingRead: Reads the last values with a certain key.\n  * thingWrite: Writes one or several values to the things.\n  * thingSubscribe: Subscribes to the realtime channel of the thing.\n\nIf you provide an activation code your thing will be activated automatically when you create the client. Then the thing token will be saved to the same config.json.\n\nPlease, take a look at the source folder examples/ to see some code examples.\n\n\n```js\nvar theThingsCoAP = require('thethingsio-coap');\n\nvar client = theThingsCoAP.createClient();\n\nvar params = {limit:15}\nclient.on('ready', function () {\n    client.thingRead('voltage', params, function (error, data) {\n        console.log(error ? error : data)\n    })\n})\n```\nThe previous code reads from the key 'voltage' the last 15 values. In the params object you can also add startDate and endDate in YYYYMMDDTHHmmss format. Note that the 'ready' event is fired when the activation is completed. If the thing is already activated the event will we fired after createClient()\n",
+  "bugs": {
+    "url": "https://github.com/theThings/thethingsio-coap-node/issues"
+  },
+  "_id": "thethingsio-coap@0.1.0",
+  "_from": "thethingsio-coap@"
+}
